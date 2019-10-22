@@ -29,6 +29,10 @@ import com.example.android.trackmysleepquality.database.SleepNight
 
 class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 
+    // TODO (03) Update SleepNightAdapter class to extend ListAdapter.
+
+    // TODO (04) Delete the data field and getItemCount() function.
+
     var data = listOf<SleepNight>()
         set(value) {
             field = value
@@ -38,24 +42,18 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
     override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        // TODO (05) Replace data[position] with getItem().
         val item = data[position]
 
         holder.bind(item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // TODO (01) Refactor the logic for creating the ViewHolder into a function called from().
-
-        // TODO (02) Make the from() function into a companion object.
-
-        // TODO (03) Move the companion object into the ViewHolder class, and have it
-        // return a ViewHolder.
-
+    class ViewHolder private constructor (itemView: View) : RecyclerView.ViewHolder(itemView){
         val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
         val quality: TextView = itemView.findViewById(R.id.quality_string)
         val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
@@ -81,10 +79,14 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val view = layoutInflater
                         .inflate(R.layout.list_item_sleep_night, parent, false)
+
                 return ViewHolder(view)
             }
         }
     }
 
+    // TODO (01) Create a new class called SleepNightDiffCallback that extends
+    // DiffUtil.ItemCallback<SleepNight>.
 
+    // TODO (02) In SleepNightDiffCallback, override areItemsTheSame() and areContentsTheSame().
 }
