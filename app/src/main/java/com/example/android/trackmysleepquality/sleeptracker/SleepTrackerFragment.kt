@@ -99,9 +99,14 @@ class SleepTrackerFragment : Fragment() {
 
         // TODO (04) Create a new SleepNightAdapter variable,
         // and bind it to the RecyclerView’s Adapter.
+        val sleepNightAdapter = SleepNightAdapter()
+        binding.sleepList.adapter = sleepNightAdapter
 
         // TODO (05) Create an observer on sleepTrackerViewModel.nights that tells
         // the Adapter when there is new data.
+        sleepTrackerViewModel.nights.observe(this, Observer { sleepNights ->
+            sleepNightAdapter.data = sleepNights
+        })
 
         return binding.root
     }
