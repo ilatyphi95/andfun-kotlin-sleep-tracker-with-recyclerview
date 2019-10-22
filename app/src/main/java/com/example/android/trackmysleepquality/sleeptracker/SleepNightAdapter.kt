@@ -16,7 +16,6 @@
 
 package com.example.android.trackmysleepquality.sleeptracker
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,14 +40,6 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
 
-        // TODO (04) Move the res variable to ViewHolder.bind().
-
-        // TODO (01) Refactor binding logic into a separate function called bind().
-
-        // TODO (02) Convert the bind() function's holder parameter to a receiver.
-
-        // TODO (03) Move bind() into the ViewHolder class.
-
         holder.bind(item)
     }
 
@@ -61,13 +52,20 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        // TODO (01) Refactor the logic for creating the ViewHolder into a function called from().
+
+        // TODO (02) Make the from() function into a companion object.
+
+        // TODO (03) Move the companion object into the ViewHolder class, and have it
+        // return a ViewHolder.
+
         val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
         val quality: TextView = itemView.findViewById(R.id.quality_string)
         val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
 
-        val res = itemView.context.resources
-
         fun bind(item: SleepNight) {
+            val res = itemView.context.resources
+
             sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
             quality.text = convertNumericQualityToString(item.sleepQuality, res)
             qualityImage.setImageResource(when (item.sleepQuality) {
