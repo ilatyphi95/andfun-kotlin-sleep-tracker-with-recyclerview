@@ -29,15 +29,10 @@ import com.example.android.trackmysleepquality.convertDurationToFormatted
 import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
 
-class SleepNightAdapter : ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) {
-
-    // TODO (03) Update SleepNightAdapter class to extend ListAdapter.
-
-    // TODO (04) Delete the data field and getItemCount() function.
+class SleepNightAdapter : ListAdapter<SleepNight,
+        SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        // TODO (05) Replace data[position] with getItem().
         val item = getItem(position)
 
         holder.bind(item)
@@ -47,7 +42,10 @@ class SleepNightAdapter : ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(
         return ViewHolder.from(parent)
     }
 
+    // TODO (04) Replace the ViewHolder constructor itemView parameter with a ListItemSleepNightBinding.
     class ViewHolder private constructor (itemView: View) : RecyclerView.ViewHolder(itemView){
+
+        // TODO (05) Replace findViewById calls with inline references to binding object fields.
         val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
         val quality: TextView = itemView.findViewById(R.id.quality_string)
         val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
@@ -71,6 +69,8 @@ class SleepNightAdapter : ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
+
+                // TODO (03) Inflate layout using binding object assigned to ListItemSleepNightBinding.
                 val view = layoutInflater
                         .inflate(R.layout.list_item_sleep_night, parent, false)
 
@@ -78,19 +78,20 @@ class SleepNightAdapter : ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(
             }
         }
     }
+}
 
-    // TODO (01) Create a new class called SleepNightDiffCallback that extends
-    // DiffUtil.ItemCallback<SleepNight>.
-    class SleepNightDiffCallback : DiffUtil.ItemCallback<SleepNight>() {
+/**
+ * Callback for calculating the diff between two non-null items in a list.
+ *
+ * Used by ListAdapter to calculate the minumum number of changes between and old list and a new
+ * list that's been passed to `submitList`.
+ */
+class SleepNightDiffCallback : DiffUtil.ItemCallback<SleepNight>() {
+    override fun areItemsTheSame(oldItem: SleepNight, newItem: SleepNight): Boolean {
+        return oldItem.nightId == newItem.nightId
+    }
 
-        // TODO (02) In SleepNightDiffCallback, override areItemsTheSame() and areContentsTheSame().
-        override fun areItemsTheSame(oldItem: SleepNight, newItem: SleepNight): Boolean {
-            return oldItem.nightId == newItem.nightId
-        }
-
-        override fun areContentsTheSame(oldItem: SleepNight, newItem: SleepNight): Boolean {
-            return oldItem == newItem
-        }
-
+    override fun areContentsTheSame(oldItem: SleepNight, newItem: SleepNight): Boolean {
+        return oldItem == newItem
     }
 }
