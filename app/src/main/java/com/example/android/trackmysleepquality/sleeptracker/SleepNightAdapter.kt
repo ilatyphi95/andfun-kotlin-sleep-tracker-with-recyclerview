@@ -40,10 +40,12 @@ class SleepNightAdapter : ListAdapter<SleepNight,
         return ViewHolder.from(parent)
     }
 
-    // TODO (04) Replace the ViewHolder constructor binding parameter with a ListItemSleepNightBinding.
-    class ViewHolder private constructor (val binding: ListItemSleepNightBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder private constructor(val binding: ListItemSleepNightBinding)
+        : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: SleepNight) {
+            // TODO (02) Replace the code below with a single binding to the SleepNight item,
+            // followed by executePendingBindings().
             val res = itemView.context.resources
 
             binding.sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
@@ -62,10 +64,7 @@ class SleepNightAdapter : ListAdapter<SleepNight,
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-
-                // TODO (03) Inflate layout using binding object assigned to ListItemSleepNightBinding.
-                val binding = ListItemSleepNightBinding.inflate(layoutInflater,
-                        parent, false)
+                val binding = ListItemSleepNightBinding.inflate(layoutInflater, parent, false)
 
                 return ViewHolder(binding)
             }

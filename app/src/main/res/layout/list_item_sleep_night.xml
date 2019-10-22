@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- TODO (01) Wrap the ConstraintLayout in a layout tag and add data binding tag. -->
-
-<!-- TODO (02) Inside the data binding tag, define a data variable called sleep,
-     then rebuild the app. -->
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="sleep"
             type="com.example.android.trackmysleepquality.database.SleepNight" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <!-- TODO (03) Bind views to the BindingAdapters you created in BindingUtils. -->
         <ImageView
             android:id="@+id/quality_image"
             android:layout_width="@dimen/icon_size"
