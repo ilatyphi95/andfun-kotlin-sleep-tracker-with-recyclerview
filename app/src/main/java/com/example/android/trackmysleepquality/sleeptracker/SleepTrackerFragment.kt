@@ -98,12 +98,12 @@ class SleepTrackerFragment : Fragment() {
             }
         })
 
-        // TODO (05) Add an observer for navigateToSleepDataQuality.
-        sleepTrackerViewModel.navigateToSleepDataQuality.observe(this, Observer { nightId ->
-            nightId?.let {
-                this.findNavController()
-                        .navigate(SleepTrackerFragmentDirections
-                                .actionSleepTrackerFragmentToSleepDetailFragment(nightId))
+        sleepTrackerViewModel.navigateToSleepDataQuality.observe(this, Observer { night ->
+            night?.let {
+
+                this.findNavController().navigate(
+                        SleepTrackerFragmentDirections
+                                .actionSleepTrackerFragmentToSleepDetailFragment(night))
                 sleepTrackerViewModel.onSleepDataQualityNavigated()
             }
         })
@@ -111,7 +111,6 @@ class SleepTrackerFragment : Fragment() {
         val manager = GridLayoutManager(activity, 3)
         binding.sleepList.layoutManager = manager
 
-        // TODO (02) Replace the Toast message with code to pass nightId to the view model.
         val adapter = SleepNightAdapter(SleepNightListener { nightId ->
             sleepTrackerViewModel.onSleepNightClicked(nightId)
         })
@@ -120,6 +119,7 @@ class SleepTrackerFragment : Fragment() {
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let {
+                // TODO (11) Replace submitList call with addHeaderAndSubmitList.
                 adapter.submitList(it)
             }
         })
