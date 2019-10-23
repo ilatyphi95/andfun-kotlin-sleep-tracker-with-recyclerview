@@ -10,8 +10,10 @@
             name="sleep"
             type="com.example.android.trackmysleepquality.database.SleepNight" />
 
+        <!-- TODO (02) Create <variable> clickListener of type SleepNightListener. -->
     </data>
 
+    <!-- TODO (03) Set ConstrainLayout's onClick property to clickListener. -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,27 +25,22 @@
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:sleepImage="@{sleep}"
-            tools:srcCompat="@drawable/ic_sleep_5" />
+            tools:srcCompat="@drawable/ic_sleep_5"
+            app:sleepImage="@{sleep}"/>
 
-        <!-- TODO (03) Delete sleep_length TextView. -->
-
-        <!-- TODO (04) Edit the quality_string TextView to place it underneath the ImageView
-             and display correctly in the GridView. -->
         <TextView
             android:id="@+id/quality_string"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/quality_image"
             app:layout_constraintStart_toStartOf="@+id/quality_image"
             app:layout_constraintTop_toBottomOf="@+id/quality_image"
-            app:sleepQualityString="@{sleep}"
-            tools:text="Excellent!!!" />
+            app:sleepQualityString="@{sleep}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -98,13 +98,12 @@ class SleepTrackerFragment : Fragment() {
             }
         })
 
-        // TODO (02) Create a GridLayoutManager spanning 3 columns and bind it to the RecyclerView.
+        val manager = GridLayoutManager(activity, 3)
+        binding.sleepList.layoutManager = manager
 
-        val manager = GridLayoutManager(this.context, 3)
-
+        // TODO (07) Pass a SleepNightListener callback to the SleepNightAdapter.
         val adapter = SleepNightAdapter()
         binding.sleepList.adapter = adapter
-        binding.sleepList.layoutManager = manager
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let {
