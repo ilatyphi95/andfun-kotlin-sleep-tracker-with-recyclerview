@@ -99,12 +99,14 @@ class SleepTrackerFragment : Fragment() {
             }
         })
 
+        // TODO (05) Add an observer for navigateToSleepDataQuality.
+
         val manager = GridLayoutManager(activity, 3)
         binding.sleepList.layoutManager = manager
 
-        // TODO (07) Pass a SleepNightListener callback to the SleepNightAdapter.
+        // TODO (02) Replace the Toast message with code to pass nightId to the view model.
         val adapter = SleepNightAdapter(SleepNightListener { nightId ->
-            Toast.makeText(this.context, nightId.toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "${nightId}", Toast.LENGTH_LONG).show()
         })
         binding.sleepList.adapter = adapter
 
